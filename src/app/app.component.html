@@ -1,6 +1,12 @@
 <dx-scheduler timeZone="America/Los_Angeles" [dataSource]="appointmentsData" [views]="['week']" currentView="week"
   [currentDate]="currentDate" [startDayHour]="9" [height]="730" (onContentReady)="onContentReady($event)"
-  (onAppointmentRendered)="onAppointmentRendered($event)">
+  (onAppointmentRendered)="onAppointmentRendered($event)" dateCellTemplate="dateCellTemplate">
+
+  <div *dxTemplate="let dateCell of 'dateCellTemplate'; let i = index">
+    {{ dateCell.text }}<br>
+    Hour:{{appointmentArray[i].hour}} <br>
+    Minute:{{appointmentArray[i].minute}}
+  </div>
 </dx-scheduler>
 
 <div id="header" style="display: flex; width: 100%; justify-content: space-between;">
@@ -12,5 +18,7 @@
   </div>
   }
 </div>
+
+
 
 <router-outlet />

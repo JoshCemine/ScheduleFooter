@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DxButtonModule, DxSchedulerComponent, DxSchedulerModule, DxTemplateModule } from 'devextreme-angular';
 import { CommonModule } from '@angular/common';
@@ -27,6 +27,7 @@ export class AppComponent {
     }));
   }
 
+  @ViewChild(DxSchedulerComponent, { static: false }) scheduler!: DxSchedulerComponent
   daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   onAppointmentRendered(e: any) {
     const day = (e.appointmentData.startDate.getDay() - 1) % 7;
@@ -58,6 +59,7 @@ export class AppComponent {
   }
 
   onContentReady(e: any) {
-    console.log("App Arr", this.appointmentArray)
+    console.log(this.scheduler.dateCellTemplate)
+    console.log(e.component.dateCellTemplate)
   }
 }
